@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/*
+ * Главный файл стилей.
+ * Все паршалы подключаются сюда.
+ */
+.example {
+  background-color: aqua;
+  max-width: 1200px;
+  padding: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+input {
+  height: 30px;
+}
+
+button {
+  height: 30px;
+  background-color: rgba(220, 20, 60, 0.726);
+  color: cornsilk;
+}
+/*# sourceMappingURL=main.css.map */
