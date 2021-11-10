@@ -11,21 +11,25 @@ let inputValue = '';
 refs.input.addEventListener('input', inputSaver);
 function inputSaver() {
     inputValue = refs.input.value
+    
   return inputValue;
 }
-refs.btn.addEventListener('submit', onSubmitForm);
+refs.form.addEventListener('submit', onSubmitForm);
 function onSubmitForm(event) {
   event.preventDefault();
   console.log(inputValue);
   return renderItems(inputValue);
   
 }
-async function renderItems(inputValue) {
+async function renderItems() {
   try {
-    const item = await getElements({});
-    console.log(item);
+    const item = await getElements(inputValue);
+    if (item.hits.length>0) {console.log(item)
+    return};
+    alert('такого нет')
+    
   } catch (error) {
     console.log(error);
   }
 }
-renderItems();
+// renderItems();
