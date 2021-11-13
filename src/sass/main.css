@@ -5,7 +5,6 @@
  */
 .example {
   background-color: aqua;
-  max-width: 1200px;
   padding: 16px;
   display: -webkit-box;
   display: -ms-flexbox;

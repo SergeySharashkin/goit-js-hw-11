@@ -33,7 +33,7 @@ function onSubmitForm(event) {
 async function renderItems(name) {
   try {
     const items = await getElements(name, page);
-    if (items.hits.length > 0) {
+    if (items.data.hits.length > 0) {
       const listMarkup = tamplate( {items} );
       refs.container.insertAdjacentHTML("beforeEnd", listMarkup);
       // console.log(items)
