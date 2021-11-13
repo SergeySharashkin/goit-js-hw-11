@@ -4,7 +4,7 @@ const MY_KEY = '24256402-655c9b75f9739418750c25629';
 const FILTERS = '&image_type=photo&orientation=horizontal&safesearch=true'
 // const gf = new GiphyFetch(MY_KEY);
 
-export default async function getElements(name) {
+export default async function getElements(name, page) {
   // const options = {
   //   method: 'GET',
   //   headers: {
@@ -12,7 +12,7 @@ export default async function getElements(name) {
   //   },
   //   body: JSON.stringify(name),
   // };
-  const response = await fetch(`${MANE_URL}?key=${MY_KEY}&q=${name}${FILTERS}`);
+  const response = await fetch(`${MANE_URL}?key=${MY_KEY}&q=${name}${FILTERS}&page=${page}&per_page=40`);
   const item = await response.json();
   
   return item

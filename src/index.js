@@ -1,5 +1,11 @@
 import './sass/main.scss';
 import getElements from './js/api_function';
+import Notiflix from 'notiflix';
+import tamplate from './templates/templateList.hbs';
+
+import SimpleLightbox from 'simplelightbox';
+
+import 'simplelightbox/dist/simple-lightbox.min.css';
 const refs = {
   container: document.querySelector('#content_container'),
   form: document.querySelector('#search-form'),
@@ -7,29 +13,48 @@ const refs = {
   input: document.querySelector('input'),
 };
 let inputValue = '';
-
+let page = 1;
 refs.input.addEventListener('input', inputSaver);
 function inputSaver() {
-    inputValue = refs.input.value
-    
+  inputValue = refs.input.value;
+
   return inputValue;
 }
 refs.form.addEventListener('submit', onSubmitForm);
 function onSubmitForm(event) {
   event.preventDefault();
+  refs.container.innerHTML=''
+  page = 1;
+
   console.log(inputValue);
-  return renderItems(inputValue);
-  
+  renderItems(inputValue);
+  return 
 }
-async function renderItems() {
+async function renderItems(name) {
   try {
-    const item = await getElements(inputValue);
-    if (item.hits.length>0) {console.log(item)
-    return};
-    alert('такого нет')
-    
+    const items = await getElements(name, page);
+    if (items.hits.length > 0) {
+      const listMarkup = tamplate( {items} );
+      refs.container.insertAdjacentHTML("beforeEnd", listMarkup);
+      // console.log(items)
+      
+      return page +=1;
+    }
+    Notiflix.Notify.warning('такого нет');
   } catch (error) {
     console.log(error);
   }
 }
 // renderItems();
+window.addEventListener('scroll',  e => {
+  const {scrollTop, clientHeight, scrollHeight} = document.documentElement;
+  if(scrollTop+clientHeight > scrollHeight-10){
+    // console.log('1111111111111');
+    
+    renderItems(inputValue)
+  }
+})
+// function clianer () {
+//   refs.container.innerHTML=''
+// }
+new SimpleLightbox('.gallery a', {});
