@@ -12,6 +12,7 @@ const refs = {
   btn: document.querySelector('button'),
   input: document.querySelector('input'),
 };
+
 let inputValue = '';
 let page = 1;
 refs.input.addEventListener('input', inputSaver);
@@ -36,8 +37,8 @@ async function renderItems(name) {
     if (items.data.hits.length > 0) {
       const listMarkup = tamplate( {items} );
       refs.container.insertAdjacentHTML("beforeEnd", listMarkup);
-      // console.log(items)
-      SimpleLightbox.refresh();
+      // console.log( SimpleLightbox.refresh())
+      galleryLiteBox.refresh();
       return page +=1;
     }
     Notiflix.Notify.warning('такого нет');
@@ -45,6 +46,10 @@ async function renderItems(name) {
     console.log(error);
   }
 }
+let galleryLiteBox = new SimpleLightbox('.gallery a');
+galleryLiteBox.on('show.simplelightbox', function () {
+	// do something…
+});
 // renderItems();
 window.addEventListener('scroll',  e => {
   const {scrollTop, clientHeight, scrollHeight} = document.documentElement;
