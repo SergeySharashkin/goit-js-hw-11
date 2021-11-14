@@ -3,7 +3,7 @@ import getElements from './js/api_function';
 import Notiflix from 'notiflix';
 import tamplate from './templates/templateList.hbs';
 
-import SimpleLightbox from 'simplelightbox';
+import SimpleLightbox from "simplelightbox";
 
 import 'simplelightbox/dist/simple-lightbox.min.css';
 const refs = {
@@ -37,7 +37,7 @@ async function renderItems(name) {
       const listMarkup = tamplate( {items} );
       refs.container.insertAdjacentHTML("beforeEnd", listMarkup);
       // console.log(items)
-      
+      SimpleLightbox.refresh();
       return page +=1;
     }
     Notiflix.Notify.warning('такого нет');
@@ -54,7 +54,11 @@ window.addEventListener('scroll',  e => {
     renderItems(inputValue)
   }
 })
-// function clianer () {
-//   refs.container.innerHTML=''
-// }
-new SimpleLightbox('.gallery a', {});
+
+
+new SimpleLightbox('.gallery a', {
+  // captions: true,
+  // spinner: true,
+  // captionsData: 'alt',
+  // captionsDelay: 250,
+});
