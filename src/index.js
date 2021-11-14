@@ -61,9 +61,9 @@ window.addEventListener('scroll',  e => {
 })
 
 
-new SimpleLightbox('.gallery a', {
-  // captions: true,
-  // spinner: true,
-  // captionsData: 'alt',
-  // captionsDelay: 250,
-});
+// new SimpleLightbox('.gallery a', {
+//   // captions: true,
+//   // spinner: true,
+//   // captionsData: 'alt',
+//   // captionsDelay: 250,
+// });
