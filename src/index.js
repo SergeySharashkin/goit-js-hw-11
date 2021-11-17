@@ -38,10 +38,13 @@ async function renderItems(name) {
       const listMarkup = tamplate( {items} );
       refs.container.insertAdjacentHTML("beforeEnd", listMarkup);
       // console.log( SimpleLightbox.refresh())
+      Notiflix.Notify.info(`Огонь, смотри сколько всякого добра. Примерно ${items.data.totalHits} картинок`);
       galleryLiteBox.refresh();
+      
       return page +=1;
     }
-    Notiflix.Notify.warning('такого нет');
+    Notiflix.Notify.warning('такогой странной штуки у нас нет, учи английский или звони другу');
+      
   } catch (error) {
     console.log(error);
   }
@@ -52,13 +55,16 @@ galleryLiteBox.on('show.simplelightbox', function () {
 });
 // renderItems();
 window.addEventListener('scroll',  e => {
-  const {scrollTop, clientHeight, scrollHeight} = document.documentElement;
-  if(scrollTop+clientHeight > scrollHeight-10){
-    // console.log('1111111111111');
-    
+  const {scrollTop, clientHeight, offsetHeight, scrollHeight} = document.documentElement;
+  if(scrollTop+clientHeight >= scrollHeight){
+    console.log(e)
     renderItems(inputValue)
+    
   }
-})
+});
+// document.addEventListener('end-of-page-reached', function(){
+//   console.log('you reached the end of the page');
+// });
 
 
 // new SimpleLightbox('.gallery a', {
